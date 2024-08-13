@@ -73,3 +73,11 @@ Before you begin, ensure you have met the following requirements:
    ```powershell
    .\Deploy-FllmJbx.ps1 -resourceGroupName <resource-group-name> -location <azure-region> -vnetName <vnet-name> -subnetName <subnet-name>
    ```
+4. Once the deployment is complete, reset the password using the Azure portal.
+    
+   - Navigate to the Azure portal.
+   - Go to the Virtual Machine resource.
+   - Click on `Help` then `Reset password` option.
+   - Follow the instructions to reset the password.
+  
+![Reset Azure VM Password](image.png)
