@@ -44,11 +44,11 @@
 param (
     [Parameter(Mandatory = $false)][string]$adminUsername = "fllmadmin",
     [Parameter(Mandatory = $false)][string]$location = "eastus2",
-    [Parameter(Mandatory = $false)][string]$nsgName = "fllm-jbx2-nsg",
-    [Parameter(Mandatory = $false)][string]$publicIpName = "fllm-jbx2-pip",
+    [Parameter(Mandatory = $false)][string]$nsgName = "fllm-jbx-nsg",
+    [Parameter(Mandatory = $false)][string]$publicIpName = "fllm-jbx-pip",
     [Parameter(Mandatory = $false)][string]$resourceGroupName = "rg-dnstest",
     [Parameter(Mandatory = $false)][string]$subnetName = "jbx",
-    [Parameter(Mandatory = $false)][string]$vmName = "fllm-jbx2-vm",
+    [Parameter(Mandatory = $false)][string]$vmName = "fllm-jbx-vm",
     [Parameter(Mandatory = $false)][string]$vnetName = "vnet-fllm"
 )
 
