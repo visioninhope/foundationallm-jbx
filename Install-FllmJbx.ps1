@@ -17,6 +17,7 @@
 .NOTES
     This script is run as a custom script extension on an Azure VM. It is intended to be used as part of a larger deployment script.
 #>
+$ErrorActionPreference = "silentlycontinue"
 
 # Install Chocolatey
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -53,4 +54,5 @@ Set-Location -Path $gitDirectory
 
 # Clone the repository into C:\git, redirecting any errors to null
 $repositoryUrl = "https://github.com/solliancenet/foundationallm.git"
-git clone $repositoryUrl 2>$null 
+git clone $repositoryUrl
+ 
