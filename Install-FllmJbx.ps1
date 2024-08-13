@@ -51,6 +51,6 @@ if (-not (Test-Path -Path $gitDirectory)) {
 # Navigate to the C:\git directory
 Set-Location -Path $gitDirectory
 
-# Clone the repository into C:\git
+# Clone the repository into C:\git, redirecting any errors to null
 $repositoryUrl = "https://github.com/solliancenet/foundationallm.git"
-git clone $repositoryUrl
+git clone $repositoryUrl 2>$null 
