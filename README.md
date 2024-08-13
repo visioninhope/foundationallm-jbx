@@ -56,7 +56,8 @@ Before you begin, ensure you have met the following requirements:
    1. **VNet Name**: The name of the virtual network.
    1. **Subnet Name**: The name of the subnet.
 
->[!NOTE] The following parameters are optional and can be modified in the `Deploy-FllmJbx.ps1` script:
+> [NOTE] 
+> The following parameters are optional and can be modified in the `Deploy-FllmJbx.ps1` script:
    ```powershell
     [Parameter(Mandatory = $false)][string]$adminUsername = "fllmadmin",
     [Parameter(Mandatory = $false)][string]$location = "eastus2",
