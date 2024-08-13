@@ -18,13 +18,19 @@ FoundationaLLM-JBX is a deployment template designed to streamline the process o
 ## Features
 
 - **FLLM Installation Jumpbox**: Rapidly deploy a jumpbox environment for installing and configuring the FoundationaLLM product.
-- **Tool Installation**: The `install-fllmjbx.ps1` script automates the installation of essential tools, including:
+- **Tool Installation**: The `install-FllmJbx.ps1` script automates the installation of essential tools, including:
+  - **Chocolatey**: Package manager for Windows.
   - **Azure CLI**: Command-line interface for managing Azure resources.
   - **Azure Developer CLI (azd)**: CLI tool to streamline Azure development.
+  - **Azure Storage Explorer**: Tool for managing Azure storage resources.
   - **Git**: Version control system.
-  - **Kubectl**: Command-line tool for interacting with Kubernetes clusters.
   - **Helm**: Kubernetes package manager.
+  - **Kubectl**: Command-line tool for interacting with Kubernetes clusters.
+  - **Lens**: Kubernetes IDE.
   - **PowerShell Core**: Cross-platform task automation tool.
+  - **Putty**: SSH and telnet client.
+  - **Visual Studio Code**: Visual Studio Code editor.
+  - **VSCode PowerShell Extension**: PowerShell extension for Visual Studio Code.
 
 ### Prerequisites
 
@@ -49,7 +55,7 @@ Before you begin, ensure you have met the following requirements:
    1. **VNet Name**: The name of the virtual network.
    1. **Subnet Name**: The name of the subnet.
 
-[!NOTE:] The following parameters are optional and can be modified in the `deploy-fllmjbx.ps1` script:
+[!NOTE:] The following parameters are optional and can be modified in the `Deploy-FllmJbx.ps1` script:
    ```powershell
     [Parameter(Mandatory = $false)][string]$adminUsername = "fllmadmin",
     [Parameter(Mandatory = $false)][string]$location = "eastus2",
@@ -59,9 +65,9 @@ Before you begin, ensure you have met the following requirements:
     [Parameter(Mandatory = $false)][string]$subnetName = "jbx",
     [Parameter(Mandatory = $false)][string]$vmName = "fllm-jbx-vm",
     [Parameter(Mandatory = $false)][string]$vnetName = "vnet-fllm"
-    ```
-1. Run the `deploy-fllmjbx.ps1` script:
+
+1. Run the `Deploy-FllmJbx.ps1` script:
 
    ```powershell
-   .\deploy-fllmjbx.ps1 -resourceGroupName <resource-group-name> -location <azure-region> -vnetName <vnet-name> -subnetName <subnet-name>
-   ```
+   .\Deploy-FllmJbx.ps1 -resourceGroupName <resource-group-name> -location <azure-region> -vnetName <vnet-name> -subnetName <subnet-name>
+   
