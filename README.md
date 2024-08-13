@@ -50,14 +50,13 @@ Before you begin, ensure you have met the following requirements:
    git clone https://github.com/solliancenet/FoundationaLLM-jbx.git
    cd FoundationaLLM-jbx
 
-1. Collect the following information:
+2. Collect the following information:
    1. **Resource Group Name**: The name of the resource group where the jumpbox will be deployed.
    1. **Location**: The Azure region where the jumpbox will be deployed (e.g., `eastus2`) must be the same region as the Virtual Network.
    1. **VNet Name**: The name of the virtual network.
    1. **Subnet Name**: The name of the subnet.
 
-> **Note:** This is an important note with good contrast.
-> The following parameters are optional and can be modified in the `Deploy-FllmJbx.ps1` script:
+> **Note:** 🚨🚀 The following parameters are optional and can be modified in the `Deploy-FllmJbx.ps1` script:
 
    ```powershell
     [Parameter(Mandatory = $false)][string]$adminUsername = "fllmadmin",
@@ -69,7 +68,7 @@ Before you begin, ensure you have met the following requirements:
     [Parameter(Mandatory = $false)][string]$vmName = "fllm-jbx-vm",
     [Parameter(Mandatory = $false)][string]$vnetName = "vnet-fllm"
    ```
-1. Run the `Deploy-FllmJbx.ps1` script:
+3. Run the `Deploy-FllmJbx.ps1` script:
 
    ```powershell
    .\Deploy-FllmJbx.ps1 -resourceGroupName <resource-group-name> -location <azure-region> -vnetName <vnet-name> -subnetName <subnet-name>
