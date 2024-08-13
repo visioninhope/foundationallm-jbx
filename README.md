@@ -40,6 +40,7 @@ Before you begin, ensure you have met the following requirements:
 - Sign in to Azure using the Azure CLI by running `az login`.
 - Set the subscription you want to use by running `az account set --subscription <subscription-id>`.
 - [Git](https://git-scm.com/downloads) installed on your local machine.
+- [Powershell Core](https://learn.microsoft.com/powershell/scripting/install/installing-powershell?view=powershell-7.4) installed on your local machine.
 
 ### Installation
 
