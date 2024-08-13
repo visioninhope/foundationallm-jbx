@@ -56,8 +56,9 @@ Before you begin, ensure you have met the following requirements:
    1. **VNet Name**: The name of the virtual network.
    1. **Subnet Name**: The name of the subnet.
 
-> [NOTE] 
+> [!NOTE]: 
 > The following parameters are optional and can be modified in the `Deploy-FllmJbx.ps1` script:
+
    ```powershell
     [Parameter(Mandatory = $false)][string]$adminUsername = "fllmadmin",
     [Parameter(Mandatory = $false)][string]$location = "eastus2",
@@ -67,9 +68,9 @@ Before you begin, ensure you have met the following requirements:
     [Parameter(Mandatory = $false)][string]$subnetName = "jbx",
     [Parameter(Mandatory = $false)][string]$vmName = "fllm-jbx-vm",
     [Parameter(Mandatory = $false)][string]$vnetName = "vnet-fllm"
-
+   ```
 1. Run the `Deploy-FllmJbx.ps1` script:
 
    ```powershell
    .\Deploy-FllmJbx.ps1 -resourceGroupName <resource-group-name> -location <azure-region> -vnetName <vnet-name> -subnetName <subnet-name>
-   
+   ```
