@@ -42,7 +42,7 @@ $Packages = `
 ForEach ($PackageName in $Packages)
 { choco install $PackageName -y }
 
-# Create the directory C:\git if it doesn't exist
+#Create the directory C:\git if it doesn't exist
 $gitDirectory = "C:\git"
 
 if (-not (Test-Path -Path $gitDirectory)) {
@@ -52,7 +52,6 @@ if (-not (Test-Path -Path $gitDirectory)) {
 # Navigate to the C:\git directory
 Set-Location -Path $gitDirectory
 
-# Clone the repository into C:\git, redirecting any errors to null
 $repositoryUrl = "https://github.com/solliancenet/foundationallm.git"
-git clone $repositoryUrl
- 
+git clone $repositoryUrl 2>$null 
+
