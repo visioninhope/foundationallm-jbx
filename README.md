@@ -81,5 +81,3 @@ Before you begin, ensure you have met the following requirements:
    - Follow the instructions to reset the password.
   
 ![Reset Azure VM Password](image.png)
-
-TEST THE CP from main to release
