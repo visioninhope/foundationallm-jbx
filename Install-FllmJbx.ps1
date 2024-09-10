@@ -33,7 +33,7 @@ $Packages = `
     'kubernetes-cli', `
     'kubernetes-helm', `
     'lens',
-    'microsoftazurestorageexplorer', `
+'microsoftazurestorageexplorer', `
     'powershell-core', `
     'putty.install', `
     'visualstudiocode', `
@@ -44,5 +44,5 @@ ForEach ($PackageName in $Packages)
 { choco install $PackageName -y }
 
 # # Install wsl2 on Windows 11
-# wsl --install
-# Restart-Computer -Force 
+wsl --install
+Restart-Computer -Force 
