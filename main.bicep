@@ -26,6 +26,9 @@ param location string = resourceGroup().location
 @description('The source IP address allowed for RDP access.')
 param allowedRdpSourceIp string
 
+@description('The resource group of the existing virtual network.')
+param vnetRgName string
+
 resource publicIP 'Microsoft.Network/publicIPAddresses@2023-02-01' = {
   name: publicIpName
   location: location
@@ -96,9 +99,9 @@ resource vm 'Microsoft.Compute/virtualMachines@2023-03-01' = {
     }
     storageProfile: {
       imageReference: {
-        publisher: 'MicrosoftWindowsServer'
-        offer: 'WindowsServer'
-        sku: '2022-Datacenter'
+        publisher: 'MicrosoftWindowsDesktop'
+        offer: 'windows-11'
+        sku: 'win11-21h2-entn'
         version: 'latest'
       }
       osDisk: {

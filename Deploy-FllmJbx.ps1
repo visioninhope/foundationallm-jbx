@@ -3,7 +3,7 @@
     Deploys an Azure VM configured to perform foundationallm via a Bicep template and PowerShell script.
 
 .DESCRIPTION
-    This script automates the deployment of pre-configured Azure VM which can be used to perform foundationallm tasks.
+    This script automates the deployment of a pre-configured Azure VM which can be used to perform foundationallm tasks.
     All the necessary resources are created using a Bicep template, and the script prompts for the admin password to be set on the VM.
     Please hard-code the other parameters in the script or pass them as arguments when running the script.
 
@@ -31,9 +31,12 @@
 .PARAMETER vnetName
     The name of the Virtual Network (VNet) where the Subnet is located. Default is 'vnet-fllm'.
 
+.PARAMETER vnetRgName
+    The name of the Resource Group where the Virtual Network (VNet) is located. Default is 'rg-vnet'.
+
 .EXAMPLE
-    ./Deploy-FllmJbx.ps1 -adminUsername "adminuser" -location "westus2" -nsgName "nsg-myproject" -publicIpName "pip-myproject" -resourceGroupName "rg-myproject" -subnetName "subnet1" -vmName "vm-myproject" -vnetName "vnet-myproject"
-    This example runs the script to deploy an infrastructure in the 'westus2' region with a custom admin username and resource names.
+    ./Deploy-FllmJbx.ps1 -adminUsername "adminuser" -location "westus2" -nsgName "nsg-myproject" -publicIpName "pip-myproject" -resourceGroupName "rg-myproject" -subnetName "subnet1" -vmName "vm-myproject" -vnetName "vnet-myproject" -vnetRgName "rg-myvnet"
+    This example runs the script to deploy an infrastructure in the 'westus2' region with a custom admin username, resource names, and a specified VNet resource group.
 
 .NOTES
     Version: 1.0
@@ -43,13 +46,14 @@
 
 param (
     [Parameter(Mandatory = $false)][string]$adminUsername = "fllmadmin",
-    [Parameter(Mandatory = $false)][string]$location = "eastus2",
-    [Parameter(Mandatory = $false)][string]$nsgName = "fllm-jbx-nsg",
-    [Parameter(Mandatory = $false)][string]$publicIpName = "fllm-jbx-pip",
-    [Parameter(Mandatory = $false)][string]$resourceGroupName = "rg-hub-eastus2-net-fllm",
+    [Parameter(Mandatory = $false)][string]$location = "eastus",
+    [Parameter(Mandatory = $false)][string]$nsgName = "nsg-fllm-jbx-w11",
+    [Parameter(Mandatory = $false)][string]$publicIpName = "pip-fllm-jbx-w11",
+    [Parameter(Mandatory = $false)][string]$resourceGroupName = "rg-fllm-jbx",
     [Parameter(Mandatory = $false)][string]$subnetName = "jbx",
-    [Parameter(Mandatory = $false)][string]$vmName = "fllm-jbx-vm",
-    [Parameter(Mandatory = $false)][string]$vnetName = "vnet-hub-eastus2-net-fllm"
+    [Parameter(Mandatory = $false)][string]$vmName = "vm-fllm-jbx-w11",
+    [Parameter(Mandatory = $false)][string]$vnetName = "vnet-fllm-jbx",
+    [Parameter(Mandatory = $false)][string]$vnetRgName = "rg-fllm-jbx"
 )
 
 # Prompt for the admin password
@@ -58,11 +62,11 @@ $adminPassword = Read-Host -Prompt "Enter the Admin Password" -AsSecureString
 # Convert the secure password to a plain text string (required for deployment)
 $adminPasswordPlainText = ConvertTo-SecureString $adminPassword -AsPlainText -Force
 
-#Get the Internet facing IP address of the deployment machine
+# Get the Internet facing IP address of the deployment machine
 $allowedRdpSourceIp = Invoke-RestMethod -Uri "https://api.ipify.org"
 
 # Get the VNet ID using the az cli
-$vnetId = az network vnet show --resource-group $resourceGroupName --name $vnetName --query id --output tsv
+$vnetId = az network vnet show --resource-group $vnetRgName --name $vnetName --query id --output tsv
 
 # Check if the VNet ID was retrieved successfully
 if (-not $vnetId) {
@@ -99,6 +103,9 @@ $parameters = @"
     },
     "vnetId": {
         "value": "$vnetId"
+    },
+    "vnetRgName": {
+        "value": "$vnetRgName"
     } 
 }
 "@

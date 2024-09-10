@@ -28,6 +28,7 @@ $Packages = `
     'azd', `
     'azure-cli', `
     'azure-kubelogin', `
+    'azcopy10', `
     'git', `
     'kubernetes-cli', `
     'kubernetes-helm', `
@@ -42,3 +43,6 @@ $Packages = `
 ForEach ($PackageName in $Packages)
 { choco install $PackageName -y }
 
+# # Install wsl2 on Windows 11
+# wsl --install
+# Restart-Computer -Force 
