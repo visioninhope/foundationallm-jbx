@@ -18,6 +18,12 @@
     This script is run as a custom script extension on an Azure VM. It is intended to be used as part of a larger deployment script.
 #>
 $ErrorActionPreference = "silentlycontinue"
+# Start a transcript of the script output
+Start-Transcript -Path "C:\Install-FllmJbx.log"
+
+# Expand C: drive to use all available space
+$MaxSize = (Get-PartitionSupportedSize -DriveLetter C).SizeMax
+Resize-Partition -DriveLetter C -Size $MaxSize
 
 # Install Chocolatey
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -30,19 +36,43 @@ $Packages = `
     'azure-kubelogin', `
     'azcopy10', `
     'git', `
+    'gitkraken', `
     'kubernetes-cli', `
     'kubernetes-helm', `
-    'lens',
-'microsoftazurestorageexplorer', `
+    'lens', `
+    'microsoftazurestorageexplorer', `
     'powershell-core', `
-    'putty.install', `
     'visualstudiocode', `
-    'vscode-powershell'
+    'vscode-powershell', `
+    'docker-desktop', `
+    'filezilla', `
+    'visualstudio2022professional', `
+    'dotnet', `
+    'dotnet-sdk', `
+    'vscode-csharp'
 
 # Install Chocolatey Packages
 ForEach ($PackageName in $Packages)
-{ choco install $PackageName -y }
+{ choco install --ignore-checksums $PackageName -y }
 
-# # Install wsl2 on Windows 11
-wsl --install
-Restart-Computer -Force 
+# Clone the FoundationaLLM repo
+$repoDir = "C:\foundationallm"
+$env:PATH += "C:\Program Files\Git\cmd"
+git clone https://github.com/solliancenet/foundationallm.git $repoDir
+
+# Enable the Hyper-V feature
+Write-Host "Enabling Hyper-V..."
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
+
+# Enable Windows Subsystem for Linux (WSL) feature
+Write-Host "Enabling WSL..."
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
+
+# Enable Virtual Machine Platform (required for WSL2)
+Write-Host "Enabling Virtual Machine Platform..."
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRestart
+
+# Stopping the Transcript and restarting the computer to apply changes
+Write-Host "The system will now restart to apply changes."
+Stop-Transcript
+Restart-Computer -Force
