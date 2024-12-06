@@ -49,8 +49,6 @@ $Packages = `
     'azure-kubelogin', `
     'azcopy10', `
     'docker-desktop', `
-    'dotnet', `
-    'dotnet-sdk', `
     'filezilla', `
     'git', `
     'gitkraken', `
