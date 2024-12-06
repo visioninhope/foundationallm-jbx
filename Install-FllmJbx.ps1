@@ -1,24 +1,37 @@
 <#
 .SYNOPSIS
-    Installs Chocolatey and a predefined list of packages, then creates a directory and clones a Git repository.
+This script sets up a development environment by expanding the C: drive, installing Chocolatey and various packages, cloning a GitHub repository, and enabling necessary Windows features.
 
 .DESCRIPTION
-    This script installs Chocolatey on the system and uses it to install a list of packages essential for development and administration tasks.
-    After installing the packages, the script creates a directory `C:\git` and clones the specified Git repository into that directory.
-    This script assumes that Git is among the installed packages and that the system has access to the internet to perform the installations.
+The script performs the following actions:
+1. Sets debug settings and starts a transcript of the script output.
+2. Expands the C: drive to use all available space.
+3. Installs Chocolatey.
+4. Installs a list of specified Chocolatey packages.
+5. Clones the FoundationaLLM repository from GitHub.
+6. Enables the Hyper-V feature.
+7. Enables the Windows Subsystem for Linux (WSL) feature.
+8. Enables the Virtual Machine Platform feature required for WSL2.
+9. Stops the transcript and restarts the computer to apply changes.
 
 .PARAMETER None
-    This script does not take any parameters. All operations are performed in sequence as defined within the script.
-
-.EXAMPLE
-    ./Install-FllmJbx.ps1
-    This example shows how to run the script without any parameters. It will install Chocolatey, install the listed packages, create a directory `C:\git`, and clone the repository.
+This script does not take any parameters.
 
 .NOTES
-    This script is run as a custom script extension on an Azure VM. It is intended to be used as part of a larger deployment script.
+File Name: Install-FllmJbx.ps1
+Author: Reid Patrick
+Date: December 2024
+Version: 1.0
+
+.EXAMPLE
+.\Install-FllmJbx.ps1
+This command runs the script to set up the development environment.
+
 #>
-$ErrorActionPreference = "silentlycontinue"
-# Start a transcript of the script output
+
+# Set Debug settings and start a transcript of the script output
+$ErrorActionPreference = "SilentlyContinue"
+Set-StrictMode -Version Latest
 Start-Transcript -Path "C:\Install-FllmJbx.log"
 
 # Expand C: drive to use all available space
@@ -35,25 +48,26 @@ $Packages = `
     'azure-cli', `
     'azure-kubelogin', `
     'azcopy10', `
+    'docker-desktop', `
+    'dotnet', `
+    'dotnet-sdk', `
+    'filezilla', `
     'git', `
     'gitkraken', `
     'kubernetes-cli', `
     'kubernetes-helm', `
     'lens', `
     'microsoftazurestorageexplorer', `
+    'postman', `
     'powershell-core', `
     'visualstudiocode', `
     'vscode-powershell', `
-    'docker-desktop', `
-    'filezilla', `
-    'visualstudio2022professional', `
-    'dotnet', `
-    'dotnet-sdk', `
-    'vscode-csharp'
+    'vscode-csharp', `
+    'visualstudio2022professional'    
 
 # Install Chocolatey Packages
 ForEach ($PackageName in $Packages)
-{ choco install --ignore-checksums $PackageName -y }
+{ choco install --ignore-checksums --no-progress --pre $PackageName -y }
 
 # Clone the FoundationaLLM repo
 $repoDir = "C:\foundationallm"

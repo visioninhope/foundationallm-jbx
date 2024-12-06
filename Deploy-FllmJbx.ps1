@@ -46,12 +46,12 @@
 
 param (
     [Parameter(Mandatory = $false)][string]$adminUsername = "fllmadmin",
-    [Parameter(Mandatory = $false)][string]$location = "eastus",
-    [Parameter(Mandatory = $false)][string]$nsgName = "nsg-fllm-jbx-w11",
-    [Parameter(Mandatory = $false)][string]$publicIpName = "pip-fllm-jbx-w11",
+    [Parameter(Mandatory = $false)][string]$location = "eastus2",
+    [Parameter(Mandatory = $false)][string]$nsgName = "nsg-vm-fllm-jbx",
+    [Parameter(Mandatory = $false)][string]$publicIpName = "pip-vm-fllm-jbx",
     [Parameter(Mandatory = $false)][string]$resourceGroupName = "rg-fllm-jbx",
     [Parameter(Mandatory = $false)][string]$subnetName = "jbx",
-    [Parameter(Mandatory = $false)][string]$vmName = "vm-fllm-jbx-w11",
+    [Parameter(Mandatory = $false)][string]$vmName = "vm-fllm-jbx",
     [Parameter(Mandatory = $false)][string]$vnetName = "vnet-fllm-jbx",
     [Parameter(Mandatory = $false)][string]$vnetRgName = "rg-fllm-jbx"
 )

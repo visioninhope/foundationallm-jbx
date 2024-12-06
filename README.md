@@ -2,10 +2,7 @@
 
 Welcome to the **FoundationaLLM-JBX** repository! This project is designed for the deployment of the **FoundationaLLM** product, which is available in a separate repository. To learn more about the FoundationaLLM project, please visit the [FoundationaLLM GitHub repository](https://github.com/solliancenet/FoundationaLLM) and the official documentation at [docs.FoundationaLLM.ai](https://docs.FoundationaLLM.ai/).
 
-## Table of Contents
-
 - [FoundationaLLM-JBX](#foundationallm-jbx)
-  - [Table of Contents](#table-of-contents)
   - [Project Overview](#project-overview)
   - [Features](#features)
     - [Prerequisites](#prerequisites)
@@ -18,18 +15,25 @@ FoundationaLLM-JBX is a deployment template designed to streamline the process o
 ## Features
 
 - **FLLM Installation Jumpbox**: Rapidly deploy a jumpbox environment for installing and configuring the FoundationaLLM product.
-- **Tool Installation**: The `install-FllmJbx.ps1` script automates the installation of essential tools, including:
-  - **Chocolatey**: Package manager for Windows.
+- **Tool Installation**: The `Install-FllmJbx.ps1` script automates the installation of essential tools, including:
   - **Azure CLI**: Command-line interface for managing Azure resources.
   - **Azure Developer CLI (azd)**: CLI tool to streamline Azure development.
   - **Azure Storage Explorer**: Tool for managing Azure storage resources.
+  - **Chocolatey**: Package manager for Windows.
+  - **Docker Desktop**: Containerization platform.
+  - **dotnet SDK**: .NET software development kit.
+  - **dotnet**: .NET software development framework.
+  - **FileZilla**: FTP client.
   - **Git**: Version control system.
   - **Helm**: Kubernetes package manager.
   - **Kubectl**: Command-line tool for interacting with Kubernetes clusters.
+  - **Kubelogin**: Tool for logging into Kubernetes clusters on Azure.
   - **Lens**: Kubernetes IDE.
+  - **Postman**: API development tool.
   - **PowerShell Core**: Cross-platform task automation tool.
-  - **Putty**: SSH and telnet client.
+  - **Visual Studio 2022**: Integrated development environment.
   - **Visual Studio Code**: Visual Studio Code editor.
+  - **VSCode C# Extension**: C# extension for Visual Studio Code.
   - **VSCode PowerShell Extension**: PowerShell extension for Visual Studio Code.
 
 ### Prerequisites
@@ -50,11 +54,13 @@ Before you begin, ensure you have met the following requirements:
    git clone https://github.com/solliancenet/FoundationaLLM-jbx.git
    cd FoundationaLLM-jbx
 
+> **Note:** To deploy the Jumpbox you will need to have an existing Virtual Network. You can use the script `Deploy-JbxVnet.ps1` to create one.
+
 2. Collect the following information:
-   1. **Resource Group Name**: The name of the resource group where the jumpbox will be deployed.
-   1. **Location**: The Azure region where the jumpbox will be deployed (e.g., `eastus2`) must be the same region as the Virtual Network.
-   1. **VNet Name**: The name of the virtual network.
-   1. **Subnet Name**: The name of the subnet.
+   - **Resource Group Name**: The name of the resource group where the jumpbox will be deployed.
+   - **Location**: The Azure region where the jumpbox will be deployed (e.g., `eastus2`) must be the same region as the Virtual Network.
+   - **VNet Name**: The name of the virtual network.
+   - **Subnet Name**: The name of the subnet.
 
 > **Note:** 🚨🚀 The following parameters are optional and can be modified in the `Deploy-FllmJbx.ps1` script:
 

@@ -90,7 +90,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2023-03-01' = {
   location: location
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_D4as_v5'
+      vmSize: 'Standard_D4s_v3'
     }
     osProfile: {
       computerName: vmName
@@ -118,6 +118,9 @@ resource vm 'Microsoft.Compute/virtualMachines@2023-03-01' = {
           id: nic.id
         }
       ]
+    }
+    securityProfile: {
+      encryptionAtHost: true
     }
   }
 }
