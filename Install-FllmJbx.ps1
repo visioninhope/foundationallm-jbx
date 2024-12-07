@@ -32,7 +32,6 @@ This command runs the script to set up the development environment.
 # Set Debug settings and start a transcript of the script output
 $ErrorActionPreference = "SilentlyContinue"
 Set-StrictMode -Version Latest
-Start-Transcript -Path "C:\Install-FllmJbx.log"
 
 # Expand C: drive to use all available space
 $MaxSize = (Get-PartitionSupportedSize -DriveLetter C).SizeMax
@@ -74,6 +73,34 @@ foreach ($PackageName in $Packages.Keys) {
     }
 }
 
+# Add FLLMAdmin user to the docker-users group
+# Define the user and group names
+$UserName = "fllmadmin"
+$GroupName = "docker-users"
+
+# Check if the group exists
+$Group = Get-LocalGroup -Name $GroupName -ErrorAction SilentlyContinue
+if (-not $Group) {
+    Write-Host "Group '$GroupName' does not exist. Exiting..." -ForegroundColor Red
+    exit 1
+}
+
+# Check if the user exists
+$User = Get-LocalUser -Name $UserName -ErrorAction SilentlyContinue
+if (-not $User) {
+    Write-Host "User '$UserName' does not exist. Exiting..." -ForegroundColor Red
+    exit 1
+}
+
+# Add the user to the group
+try {
+    Add-LocalGroupMember -Group $GroupName -Member $UserName
+    Write-Host "User '$UserName' has been added to the '$GroupName' group." -ForegroundColor Green
+}
+catch {
+    Write-Host "Failed to add user '$UserName' to the '$GroupName' group. Error: $_" -ForegroundColor Red
+}
+
 # Clone the FoundationaLLM repo
 $repoDir = "C:\foundationallm"
 $env:PATH += "C:\Program Files\Git\cmd"
@@ -93,5 +120,4 @@ Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRes
 
 # Stopping the Transcript and restarting the computer to apply changes
 Write-Host "The system will now restart to apply changes."
-Stop-Transcript
 Restart-Computer -Force
