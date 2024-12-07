@@ -52,7 +52,6 @@ $Packages = [ordered]@{
     'docker-desktop'                = 'latest'
     'filezilla'                     = 'latest'
     'git'                           = 'latest'
-    'gitkraken'                     = 'latest'
     'kubernetes-cli'                = 'latest'
     'kubernetes-helm'               = 'latest'
     'lens'                          = 'latest'
@@ -68,10 +67,10 @@ $Packages = [ordered]@{
 foreach ($PackageName in $Packages.Keys) {
     $Version = $Packages[$PackageName]
     if ($Version -ne 'latest') {
-        choco install --ignore-checksums --no-progress --pre $PackageName --version $Version -y
+        choco install --ignore-checksums --no-progress $PackageName --version $Version -y
     }
     else {
-        choco install --ignore-checksums --no-progress --pre $PackageName -y
+        choco install --ignore-checksums --no-progress $PackageName -y
     }
 }
 
