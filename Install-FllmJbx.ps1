@@ -44,7 +44,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object
 
 # Assign Chocolatey Packages and Versions
 # Specify the package name as the key and the version as the value (use 'latest' for the latest version)
-$Packages = @{
+$Packages = [ordered]@{
     'azd'                           = 'latest'
     'azure-cli'                     = 'latest'
     'azure-kubelogin'               = 'latest'
