@@ -42,30 +42,38 @@ Resize-Partition -DriveLetter C -Size $MaxSize
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# Assign Chocolatey Packages to Install
-$Packages = `
-    'azd', `
-    'azure-cli', `
-    'azure-kubelogin', `
-    'azcopy10', `
-    'docker-desktop', `
-    'filezilla', `
-    'git', `
-    'gitkraken', `
-    'kubernetes-cli', `
-    'kubernetes-helm', `
-    'lens', `
-    'microsoftazurestorageexplorer', `
-    'postman', `
-    'powershell-core', `
-    'visualstudiocode', `
-    'vscode-powershell', `
-    'vscode-csharp', `
-    'visualstudio2022professional'    
+# Assign Chocolatey Packages and Versions
+# Specify the package name as the key and the version as the value (use 'latest' for the latest version)
+$Packages = @{
+    'azd'                           = 'latest'
+    'azure-cli'                     = 'latest'
+    'azure-kubelogin'               = 'latest'
+    'azcopy10'                      = 'latest'
+    'docker-desktop'                = 'latest'
+    'filezilla'                     = 'latest'
+    'git'                           = 'latest'
+    'gitkraken'                     = 'latest'
+    'kubernetes-cli'                = 'latest'
+    'kubernetes-helm'               = 'latest'
+    'lens'                          = 'latest'
+    'microsoftazurestorageexplorer' = 'latest'
+    'powershell-core'               = '7.4.6'
+    'visualstudiocode'              = 'latest'
+    'vscode-powershell'             = 'latest'
+    'vscode-csharp'                 = 'latest'
+    'visualstudio2022professional'  = 'latest'
+}
 
-# Install Chocolatey Packages
-ForEach ($PackageName in $Packages)
-{ choco install --ignore-checksums --no-progress --pre $PackageName -y }
+# Install Chocolatey Packages with version support
+foreach ($PackageName in $Packages.Keys) {
+    $Version = $Packages[$PackageName]
+    if ($Version -ne 'latest') {
+        choco install --ignore-checksums --no-progress --pre $PackageName --version $Version -y
+    }
+    else {
+        choco install --ignore-checksums --no-progress --pre $PackageName -y
+    }
+}
 
 # Clone the FoundationaLLM repo
 $repoDir = "C:\foundationallm"
