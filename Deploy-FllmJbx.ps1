@@ -103,10 +103,7 @@ $parameters = @"
     },
     "vnetId": {
         "value": "$vnetId"
-    },
-    "vnetRgName": {
-        "value": "$vnetRgName"
-    } 
+    }
 }
 "@
 

@@ -56,6 +56,7 @@ $Packages = [ordered]@{
     'lens'                          = 'latest'
     'microsoftazurestorageexplorer' = 'latest'
     'powershell-core'               = '7.4.6'
+    'postman'                       = 'latest'
     'visualstudiocode'              = 'latest'
     'vscode-powershell'             = 'latest'
     'vscode-csharp'                 = 'latest'

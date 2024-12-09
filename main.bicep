@@ -26,9 +26,6 @@ param location string = resourceGroup().location
 @description('The source IP address allowed for RDP access.')
 param allowedRdpSourceIp string
 
-@description('The resource group of the existing virtual network.')
-param vnetRgName string
-
 resource publicIP 'Microsoft.Network/publicIPAddresses@2023-02-01' = {
   name: publicIpName
   location: location

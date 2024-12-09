@@ -86,4 +86,11 @@ Before you begin, ensure you have met the following requirements:
    - Click on `Help` then `Reset password` option.
    - Follow the instructions to reset the password.
   
-![Reset Azure VM Password](image.png)
+![Reset Azure VM Password](./media/pwd.png)
+
+5. To install Windows Subsystem for Linux (WSL) on the jumpbox, run the following command in the PowerShell terminal:
+
+   ```powershell
+   wsl --install
+   ```
+![WSL Installation](./media/wsl.png)
