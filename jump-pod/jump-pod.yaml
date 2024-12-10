@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fllm-jbx
+  namespace: fllm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jump-pod
+  template:
+    metadata:
+      labels:
+        app: jump-pod
+    spec:
+      containers:
+      - name: jump-pod
+        image: nicolaka/netshoot
+        command: ["sleep", "infinity"]
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"

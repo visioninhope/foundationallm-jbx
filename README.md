@@ -1,6 +1,6 @@
 # FoundationaLLM-JBX
 
-Welcome to the **FoundationaLLM-JBX** repository! This project is designed for the deployment of the **FoundationaLLM** product, which is available in a separate repository. To learn more about the FoundationaLLM project, please visit the [FoundationaLLM GitHub repository](https://github.com/solliancenet/FoundationaLLM) and the official documentation at [docs.FoundationaLLM.ai](https://docs.FoundationaLLM.ai/).
+Welcome to the **FoundationaLLM-JBX** repository! This project is designed for the deployment of the [**FoundationaLLM**](https://foundationallm.ai) product, which is available in a separate repository. To learn more about the FoundationaLLM project, please visit the [FoundationaLLM GitHub repository](https://github.com/solliancenet/FoundationaLLM) and the official documentation at [docs.FoundationaLLM.ai](https://docs.FoundationaLLM.ai/).
 
 - [FoundationaLLM-JBX](#foundationallm-jbx)
   - [Project Overview](#project-overview)
@@ -16,20 +16,17 @@ FoundationaLLM-JBX is a deployment template designed to streamline the process o
 
 - **FLLM Installation Jumpbox**: Rapidly deploy a jumpbox environment for installing and configuring the FoundationaLLM product.
 - **Tool Installation**: The `Install-FllmJbx.ps1` script automates the installation of essential tools, including:
+  - **Chocolatey**: Package manager for Windows.
   - **Azure CLI**: Command-line interface for managing Azure resources.
   - **Azure Developer CLI (azd)**: CLI tool to streamline Azure development.
   - **Azure Storage Explorer**: Tool for managing Azure storage resources.
-  - **Chocolatey**: Package manager for Windows.
   - **Docker Desktop**: Containerization platform.
-  - **dotnet SDK**: .NET software development kit.
-  - **dotnet**: .NET software development framework.
   - **FileZilla**: FTP client.
   - **Git**: Version control system.
   - **Helm**: Kubernetes package manager.
   - **Kubectl**: Command-line tool for interacting with Kubernetes clusters.
   - **Kubelogin**: Tool for logging into Kubernetes clusters on Azure.
   - **Lens**: Kubernetes IDE.
-  - **Postman**: API development tool.
   - **PowerShell Core**: Cross-platform task automation tool.
   - **Visual Studio 2022**: Integrated development environment.
   - **Visual Studio Code**: Visual Studio Code editor.
@@ -94,3 +91,9 @@ Before you begin, ensure you have met the following requirements:
    wsl --install
    ```
 ![WSL Installation](./media/wsl.png)
+
+6. Included is a Network Troublshooting Jumppod which can be deployed manually into an FLLM Cluster. To Deploy the FLLM Jumppod, run the following command in the PowerShell terminal:
+
+   ```powershell
+   .\Deploy-JumpPod.ps1 -ClusterType "backend" -SubscriptionName "subscriptionNameHere" -ResourceGroupName "resourceGroupNameHere"
+   ```
