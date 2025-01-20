@@ -116,9 +116,6 @@ resource vm 'Microsoft.Compute/virtualMachines@2023-03-01' = {
         }
       ]
     }
-    securityProfile: {
-      encryptionAtHost: true
-    }
   }
 }
 
