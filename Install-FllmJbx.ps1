@@ -73,6 +73,9 @@ foreach ($PackageName in $Packages.Keys) {
     }
 }
 
+# Configure Azure CLI extension for dynamic install
+az config set extension.dynamic_install_allow_preview=true
+
 # Add FLLMAdmin user to the docker-users group
 # Define the user and group names
 $UserName = "fllmadmin"
